@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace PostBox.Controllers
+namespace PostBox.Integration.Sample.API.Controllers
 {
     [ApiController]
     [Route("[controller]")]

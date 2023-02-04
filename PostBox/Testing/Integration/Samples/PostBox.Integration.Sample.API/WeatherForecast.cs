@@ -1,4 +1,4 @@
-namespace PostBox
+namespace PostBox.Integration.Sample.API
 {
     public class WeatherForecast
     {

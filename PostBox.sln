@@ -3,7 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostBox", "PostBox\PostBox.csproj", "{CD84F215-31F0-462C-A4C2-66997BECC83D}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Outbound", "Outbound", "{EA0EDC5D-8487-453F-90D5-79EC4251BAA5}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Inbound", "Inbound", "{1DF8BA9D-B47D-429C-A11C-46673DA4C1B3}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Integration", "Integration", "{F7DF2A43-D1B0-4044-A617-58453F7A946F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{697B506A-405F-4D55-8409-195CB6292C41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Testing", "Testing", "{030DD165-6081-48BB-98E2-7EC45E1606ED}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{6A2D7D03-B8E0-4D3C-A1BF-8F0FC1948276}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostBox.Common.Core", "PostBox\Project\Common\PostBox.Common.Core\PostBox.Common.Core.csproj", "{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{F3176C8F-6708-43D6-AD21-5703DC21E60D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostBox.Integration.Sample.API", "PostBox\Testing\Integration\Samples\PostBox.Integration.Sample.API\PostBox.Integration.Sample.API.csproj", "{CFB440DA-28B3-4E8F-9989-1B29D724569B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +27,26 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{CD84F215-31F0-462C-A4C2-66997BECC83D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CD84F215-31F0-462C-A4C2-66997BECC83D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CD84F215-31F0-462C-A4C2-66997BECC83D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CD84F215-31F0-462C-A4C2-66997BECC83D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA0EDC5D-8487-453F-90D5-79EC4251BAA5} = {697B506A-405F-4D55-8409-195CB6292C41}
+		{1DF8BA9D-B47D-429C-A11C-46673DA4C1B3} = {697B506A-405F-4D55-8409-195CB6292C41}
+		{F7DF2A43-D1B0-4044-A617-58453F7A946F} = {030DD165-6081-48BB-98E2-7EC45E1606ED}
+		{6A2D7D03-B8E0-4D3C-A1BF-8F0FC1948276} = {697B506A-405F-4D55-8409-195CB6292C41}
+		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E} = {6A2D7D03-B8E0-4D3C-A1BF-8F0FC1948276}
+		{F3176C8F-6708-43D6-AD21-5703DC21E60D} = {F7DF2A43-D1B0-4044-A617-58453F7A946F}
+		{CFB440DA-28B3-4E8F-9989-1B29D724569B} = {F3176C8F-6708-43D6-AD21-5703DC21E60D}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1553AF66-A823-4ACB-B6C3-6D65600AC0FD}
