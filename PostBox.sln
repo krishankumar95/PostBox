@@ -21,6 +21,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{F317
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PostBox.Integration.Sample.API", "PostBox\Testing\Integration\Samples\PostBox.Integration.Sample.API\PostBox.Integration.Sample.API.csproj", "{CFB440DA-28B3-4E8F-9989-1B29D724569B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostBox.Common.DataAccess", "PostBox.Common.DataAccess\PostBox.Common.DataAccess.csproj", "{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CFB440DA-28B3-4E8F-9989-1B29D724569B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -47,6 +53,7 @@ Global
 		{B98A6C13-ACAE-42F6-8173-D14D3F2AD51E} = {6A2D7D03-B8E0-4D3C-A1BF-8F0FC1948276}
 		{F3176C8F-6708-43D6-AD21-5703DC21E60D} = {F7DF2A43-D1B0-4044-A617-58453F7A946F}
 		{CFB440DA-28B3-4E8F-9989-1B29D724569B} = {F3176C8F-6708-43D6-AD21-5703DC21E60D}
+		{0CF2305E-6DB0-45E2-BE38-4E35C744A3D7} = {6A2D7D03-B8E0-4D3C-A1BF-8F0FC1948276}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {1553AF66-A823-4ACB-B6C3-6D65600AC0FD}
