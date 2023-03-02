@@ -5,7 +5,7 @@
 ### a) Outbound PostBox
 Holds outgoing messages from a producer till their eventual pickup and delivery to the Messaging Queue.
 
-    1. Provides a buffer to fallback and keeps the asyc system functioning during intermittent failures.
+    1. Provides a buffer to fallback and keeps the async system functioning during intermittent failures.
     2. Historic record keeping and replay of events for supporting various patterns like Event Sourcing. (Configurable)
     
 ### b) Inbound PostBox 

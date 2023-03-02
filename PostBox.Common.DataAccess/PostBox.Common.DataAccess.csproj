@@ -11,4 +11,13 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="7.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DAO\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PostBox\Project\Common\PostBox.Common.Core\PostBox.Common.Core.csproj" />
+  </ItemGroup>
 </Project>

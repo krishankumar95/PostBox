@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PostBox.Integration.Sample.API.MQ;
+using PostBox.Common.DataAccess.DAL;
+using PostBox.Outbound.Ingestion.Interface;
+using PostBox.Outbound.Ingestion.Interface.Models;
 
 namespace PostBox.Integration.Sample.API.Controllers
 {
@@ -7,17 +9,25 @@ namespace PostBox.Integration.Sample.API.Controllers
     [Route("[controller]")]
     public class MqTestingController : ControllerBase
     {
-        private readonly RabbitMqPublisher _rabbitMqPublisher;
-        public MqTestingController() 
-        { 
-            _rabbitMqPublisher= new RabbitMqPublisher();
-        }
-        [HttpGet(Name = "PublishOnRabbitMq")]
-        public ActionResult PublishOnRabbitMq(int id)
+        private readonly IPostboxOutboundIngestor<WeatherForecast> _rabbitMqPublisher;
+        public MqTestingController(IPostboxOutboundIngestor<WeatherForecast> ingestor) 
         {
-            _rabbitMqPublisher.SendMessage();
+            _rabbitMqPublisher = ingestor;
+        }
+        [HttpGet(Name = "PublishOnMq")]
+        public async Task<ActionResult> PublishOnMq(int id)
+        {
+            var deliveryParams = new RabbitMqDeliveryParameteres();
+            deliveryParams.QueueName = "hello";
+            var msg = new WeatherForecast();
+            msg.Summary = $"Just a test message{id}";
+            await _rabbitMqPublisher.PublishMessage(msg, deliveryParams);
             return Ok();
         }
+
+       
+
+
 
 
     }

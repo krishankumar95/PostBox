@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using PostBox.Common.Core;
 
 namespace PostBox.Common.DataAccess.DAL
 {
-    public interface IPostboxMessageRepository<T>
+    public interface IPostboxMessageRepository
     {
-        Task PublishMessage(T message);
+        Task CreateMessage(PostboxMessage message);
+
+        IEnumerable<PostboxMessage> GetAllMessages();
     }
 }

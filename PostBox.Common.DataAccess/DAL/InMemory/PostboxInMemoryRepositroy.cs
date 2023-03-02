@@ -1,23 +1,25 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using PostBox.Common.DataAccess.DAO;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
+using PostBox.Common.Core;
 
 namespace PostBox.Common.DataAccess.DAL.InMemory
 {
-    public class PostboxInMemoryRepositroy : IPostboxMessageRepository<PostboxMessage>
+    public class PostboxInMemoryRepositroy : IPostboxMessageRepository
     {
-        private readonly PostboxMessageDbContext _dbContext;
+        private readonly PostboxMessageDbContext _dbContext = new PostboxMessageDbContext();
 
-        public PostboxInMemoryRepositroy(PostboxMessageDbContext dbContext) => _dbContext = dbContext;
+       // public PostboxInMemoryRepositroy(PostboxMessageDbContext dbContext) => _dbContext = dbContext;
 
-        public async Task PublishMessage(PostboxMessage message)
+        public async Task CreateMessage(PostboxMessage message)
         {
             await _dbContext.AddAsync(message);
             await _dbContext.SaveChangesAsync();
         }
+
+        IEnumerable<PostboxMessage> IPostboxMessageRepository.GetAllMessages()
+        {
+            return _dbContext.Messages.ToList();
+        }
+
+       
     }
 }
