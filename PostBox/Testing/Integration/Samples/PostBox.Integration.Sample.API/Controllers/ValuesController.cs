@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PostBox.Common.DataAccess.DAL;
+using PostBox.Outbound.Relayer.Interface;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -16,14 +17,16 @@ namespace PostBox.Integration.Sample.API.Controllers
     public class ValuesController : Controller
     {
         IPostboxMessageRepository messageRepository;
-        public ValuesController(IPostboxMessageRepository repo)
+        IPostboxOutboundRelayer outboundRelayer;
+        public ValuesController(IPostboxMessageRepository repo, IPostboxOutboundRelayer relayer)
         {
             messageRepository = repo;
+            outboundRelayer = relayer;
         }
 
         // GET: api/values
         [HttpGet()]
-        public ActionResult GetAllFromRepo()
+        public async Task<ActionResult> GetAllFromRepo()
         {
             var msgs = messageRepository.GetAllMessages();
             List<string> decoded = new List<string>();
@@ -32,6 +35,7 @@ namespace PostBox.Integration.Sample.API.Controllers
                 var str = Encoding.UTF8.GetString(msg.MessageBody);
                 decoded.Add(str);
             }
+            await outboundRelayer.ExecuteAsync();
             return Ok(decoded);
         }
     }

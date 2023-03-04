@@ -32,15 +32,21 @@ namespace PostBox.Outbound.Ingestion.Interface.Ingestors
 
         private Task<PostboxMessage> GeneratePostboxMessage(T msg,DeliveryParameters deliveryParameters)
         {
+            //TODO: Extract the reusable portion across brokers
             //TODO: Serliaser choice as per user XML , JSON
             var serliasedMsg = JsonSerializer.Serialize(msg);
             //TODO: Encoding as specified by user
             var msgBytes = Encoding.UTF8.GetBytes(serliasedMsg);
 
-
             var postboxMsg = new PostboxMessage();
             postboxMsg.DeliveryParameters = deliveryParameters;
             postboxMsg.MessageBody = msgBytes;
+            if (!string.IsNullOrEmpty(deliveryParameters.ConnectionTag))
+            {
+                postboxMsg.PostboxHeaders = new Dictionary<PostboxHeaders, object>();
+                postboxMsg.PostboxHeaders.Add(PostboxHeaders.CONNECTION_TAG, deliveryParameters.ConnectionTag);
+            }
+            postboxMsg.Status = DeliveryStatus.POSTED;
             var rnd = new Random();
             postboxMsg.Id = (ulong)rnd.NextInt64();
             return Task.FromResult(postboxMsg);

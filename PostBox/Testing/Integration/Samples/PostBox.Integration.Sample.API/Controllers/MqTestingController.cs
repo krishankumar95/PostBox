@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PostBox.Common.Core;
 using PostBox.Common.DataAccess.DAL;
 using PostBox.Outbound.Ingestion.Interface;
-using PostBox.Outbound.Ingestion.Interface.Models;
 
 namespace PostBox.Integration.Sample.API.Controllers
 {
@@ -19,6 +19,8 @@ namespace PostBox.Integration.Sample.API.Controllers
         {
             var deliveryParams = new RabbitMqDeliveryParameteres();
             deliveryParams.QueueName = "hello";
+            deliveryParams.RoutingKey = "";
+            deliveryParams.ExchangeName = "";
             var msg = new WeatherForecast();
             msg.Summary = $"Just a test message{id}";
             await _rabbitMqPublisher.PublishMessage(msg, deliveryParams);

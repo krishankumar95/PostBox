@@ -2,6 +2,9 @@ using PostBox.Common.DataAccess.DAL;
 using PostBox.Common.DataAccess.DAL.InMemory;
 using PostBox.Outbound.Ingestion.Interface;
 using PostBox.Outbound.Ingestion.Interface.Ingestors;
+using PostBox.Outbound.Relayer.Interface;
+using PostBox.Outbound.Relayer.Interface.Models;
+using PostBox.Outbound.Relayer.Interface.Relayers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -14,6 +17,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped(typeof(IPostboxOutboundIngestor<>), typeof(RabbitMqIngestor<>));
 builder.Services.AddSingleton<IPostboxMessageRepository, PostboxInMemoryRepositroy>();
+builder.Services.Configure<PostboxOutboundRelayerConfig>(builder.Configuration.GetSection("RelayerSettings")); 
+builder.Services.AddSingleton<IPostboxOutboundRelayer, RabbitMqOutboundRelayer>();
 
 var app = builder.Build();
 

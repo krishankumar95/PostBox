@@ -15,6 +15,6 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PostBox.Common.DataAccess\PostBox.Common.DataAccess.csproj" />
+    <ProjectReference Include="..\..\Common\PostBox.Common.DataAccess\PostBox.Common.DataAccess.csproj" />
   </ItemGroup>
 </Project>

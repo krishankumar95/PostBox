@@ -2,8 +2,8 @@
 {
 	public enum BrokerType
 	{
-		RabbitMq,
-		ServiceBus
+		RABBIT_MQ,
+		SERVICE_BUS
 	}
 }
 

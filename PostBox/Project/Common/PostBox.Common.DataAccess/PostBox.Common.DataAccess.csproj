@@ -18,6 +18,6 @@
     <Folder Include="DAO\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\PostBox\Project\Common\PostBox.Common.Core\PostBox.Common.Core.csproj" />
+    <ProjectReference Include="..\PostBox.Common.Core\PostBox.Common.Core.csproj" />
   </ItemGroup>
 </Project>

@@ -5,6 +5,8 @@
 
         public ulong Id { get; set; }
 
+        public DeliveryStatus Status { get; set; }
+
         /// <summary>
         /// Contains the Seralised Message Content , Allows for Empty Content to Support Header Only Communctation Messages
         /// </summary>
@@ -25,7 +27,7 @@
         /// <summary>
         /// Headers which are tied to the chosen broker, can vary across brokers
         /// </summary>
-        public Dictionary<string, Object>? BrokerSpecificHeaders { get; set; }
+        public Dictionary<string, Object>? BrokerSpecificHeaders { get; set; } 
 
         /// <summary>
         /// Headers which are additionaly supplied by the publisher
@@ -35,6 +37,6 @@
         /// <summary>
         /// Headers for PostBox functionality
         /// </summary>
-        public Dictionary<string, Object>? PostboxHeaders { get; set; }
+        public Dictionary<PostboxHeaders, Object>? PostboxHeaders { get; set; } 
     }
 }
