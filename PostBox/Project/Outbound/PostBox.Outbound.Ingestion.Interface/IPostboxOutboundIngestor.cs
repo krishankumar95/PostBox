@@ -1,5 +1,4 @@
-﻿using System;
-using PostBox.Common.Core;
+﻿using PostBox.Common.Core;
 
 namespace PostBox.Outbound.Ingestion.Interface
 {

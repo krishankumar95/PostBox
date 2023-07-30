@@ -1,19 +1,22 @@
-﻿using System;
-using PostBox.Common.DataAccess.DAL;
+﻿using PostBox.Common.DataAccess.DAL;
 using PostBox.Common.Core;
 using System.Text;
 using System.Text.Json;
-using System.Security.Cryptography;
+using MediatR;
+using PostBox.Common.Core.Notifications;
 
 namespace PostBox.Outbound.Ingestion.Interface.Ingestors
 {
 	public class RabbitMqIngestor<T>:IPostboxOutboundIngestor<T>
 	{
         private readonly IPostboxMessageRepository _messageRepository;
+        private readonly IMediator _mediator; 
 
-        public RabbitMqIngestor(IPostboxMessageRepository messageRepository)
+
+        public RabbitMqIngestor(IPostboxMessageRepository messageRepository,IMediator mediator)
 		{
             _messageRepository = messageRepository;
+            _mediator = mediator;
         }
 
         public DeliveryParameters DeliveryParameters { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
@@ -28,6 +31,7 @@ namespace PostBox.Outbound.Ingestion.Interface.Ingestors
         {
             var postboxMsg = await GeneratePostboxMessage(message, deliveryParameters);
             await _messageRepository.CreateMessage(postboxMsg);
+            await _mediator.Publish(new MessageIngestedNotification(postboxMsg.Id));
         }
 
         private Task<PostboxMessage> GeneratePostboxMessage(T msg,DeliveryParameters deliveryParameters)
@@ -47,8 +51,7 @@ namespace PostBox.Outbound.Ingestion.Interface.Ingestors
                 postboxMsg.PostboxHeaders.Add(PostboxHeaders.CONNECTION_TAG, deliveryParameters.ConnectionTag);
             }
             postboxMsg.Status = DeliveryStatus.POSTED;
-            var rnd = new Random();
-            postboxMsg.Id = (ulong)rnd.NextInt64();
+            postboxMsg.Id = new Guid().ToString();
             return Task.FromResult(postboxMsg);
         }
 

@@ -17,4 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\PostBox.Common.DataAccess\PostBox.Common.DataAccess.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="11.1.0" />
+  </ItemGroup>
 </Project>

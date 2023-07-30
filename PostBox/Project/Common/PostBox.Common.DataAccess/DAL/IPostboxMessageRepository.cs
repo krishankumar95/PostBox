@@ -7,5 +7,7 @@ namespace PostBox.Common.DataAccess.DAL
         Task CreateMessage(PostboxMessage message);
 
         IEnumerable<PostboxMessage> GetAllMessages();
+
+        PostboxMessage GetMessageWithId(string Id);
     }
 }

@@ -19,6 +19,7 @@ builder.Services.AddScoped(typeof(IPostboxOutboundIngestor<>), typeof(RabbitMqIn
 builder.Services.AddSingleton<IPostboxMessageRepository, PostboxInMemoryRepositroy>();
 builder.Services.Configure<PostboxOutboundRelayerConfig>(builder.Configuration.GetSection("RelayerSettings")); 
 builder.Services.AddSingleton<IPostboxOutboundRelayer, RabbitMqOutboundRelayer>();
+PostBox.Outbound.Relayer.Interface.Relayers.RegistrationHooks.Register(builder.Services);
 
 var app = builder.Build();
 

@@ -37,7 +37,7 @@ namespace PostBox.Integration.Sample.API.Controllers
             }
             await outboundRelayer.ExecuteAsync();
             return Ok(decoded);
-        }
+            }
     }
 }
 

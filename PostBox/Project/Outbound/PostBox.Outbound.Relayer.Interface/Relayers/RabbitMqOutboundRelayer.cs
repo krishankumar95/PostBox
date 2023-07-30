@@ -1,8 +1,6 @@
-﻿using System;
-using System.Text;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using PostBox.Common.Core;
+using PostBox.Common.Core.Notifications;
 using PostBox.Common.DataAccess.DAL;
 using PostBox.Outbound.Relayer.Interface.Models;
 using RabbitMQ.Client;
@@ -30,6 +28,12 @@ namespace PostBox.Outbound.Relayer.Interface.Relayers
                 RelayMessage(msg);
             }
 
+            return Task.CompletedTask;
+        }
+
+        public Task Handle(MessageIngestedNotification notification, CancellationToken cancellationToken)
+        {
+            RelayMessage(postboxMessageRepository.GetMessageWithId(notification.MessageId));
             return Task.CompletedTask;
         }
 
