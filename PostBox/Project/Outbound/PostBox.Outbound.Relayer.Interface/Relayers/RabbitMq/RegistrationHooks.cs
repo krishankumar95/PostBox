@@ -2,7 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using MediatR;
 
-namespace PostBox.Outbound.Relayer.Interface.Relayers
+namespace PostBox.Outbound.Relayer.Interface.Relayers.RabbitMq
 {
 	public static class RegistrationHooks
 	{

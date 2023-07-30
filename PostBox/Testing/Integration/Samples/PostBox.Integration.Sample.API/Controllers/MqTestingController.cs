@@ -10,6 +10,7 @@ namespace PostBox.Integration.Sample.API.Controllers
     public class MqTestingController : ControllerBase
     {
         private readonly IPostboxOutboundIngestor<WeatherForecast> _rabbitMqPublisher;
+
         public MqTestingController(IPostboxOutboundIngestor<WeatherForecast> ingestor) 
         {
             _rabbitMqPublisher = ingestor;
@@ -17,12 +18,11 @@ namespace PostBox.Integration.Sample.API.Controllers
         [HttpGet(Name = "PublishOnMq")]
         public async Task<ActionResult> PublishOnMq(int id)
         {
-            var deliveryParams = new RabbitMqDeliveryParameteres();
-            deliveryParams.QueueName = "hello";
-            deliveryParams.RoutingKey = "";
-            deliveryParams.ExchangeName = "";
-            var msg = new WeatherForecast();
-            msg.Summary = $"Just a test message{id}";
+            var entityToPublishTo = "hello";
+            var deliveryParams = new DeliveryParameters(MessagingEntityType.Queue, entityToPublishTo);
+
+            var msg = new WeatherForecast { Summary = $"Just a test message{id}" };
+
             await _rabbitMqPublisher.PublishMessage(msg, deliveryParams);
             return Ok();
         }

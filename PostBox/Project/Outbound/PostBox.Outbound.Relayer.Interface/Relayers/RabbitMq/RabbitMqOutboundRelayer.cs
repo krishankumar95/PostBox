@@ -3,9 +3,10 @@ using PostBox.Common.Core;
 using PostBox.Common.Core.Notifications;
 using PostBox.Common.DataAccess.DAL;
 using PostBox.Outbound.Relayer.Interface.Models;
+using PostBox.Outbound.Relayer.Interface.Models.RabbitMq;
 using RabbitMQ.Client;
 
-namespace PostBox.Outbound.Relayer.Interface.Relayers
+namespace PostBox.Outbound.Relayer.Interface.Relayers.RabbitMq
 {
 	public class RabbitMqOutboundRelayer:IPostboxOutboundRelayer
 	{
@@ -39,7 +40,7 @@ namespace PostBox.Outbound.Relayer.Interface.Relayers
 
         public void RelayMessage(PostboxMessage msg)
         {
-            var deliveryParams = (RabbitMqDeliveryParameteres)msg.DeliveryParameters;
+            var deliveryParams = new RabbitMqDeliveryParameteres(msg.DeliveryParameters); //Needs a helper function to translate generic MQ config to specific config
             var factory = new ConnectionFactory { HostName = relayerConfig.DatabaseUri };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
@@ -51,7 +52,7 @@ namespace PostBox.Outbound.Relayer.Interface.Relayers
                                  arguments: null);
 
             channel.BasicPublish(exchange: deliveryParams.ExchangeName,
-                                 routingKey: deliveryParams.QueueName,
+                                 routingKey: deliveryParams.RoutingKey,
                                  basicProperties: props,
                                  body: msg.MessageBody);
         }

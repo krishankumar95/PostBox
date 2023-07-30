@@ -3,7 +3,7 @@
     public class PostboxMessage
     {
 
-        public string Id { get; set; }
+        public string Id{ get; set; }
 
         public DeliveryStatus Status { get; set; }
 

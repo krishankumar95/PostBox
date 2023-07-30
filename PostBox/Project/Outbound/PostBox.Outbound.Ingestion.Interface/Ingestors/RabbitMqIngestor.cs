@@ -51,7 +51,7 @@ namespace PostBox.Outbound.Ingestion.Interface.Ingestors
                 postboxMsg.PostboxHeaders.Add(PostboxHeaders.CONNECTION_TAG, deliveryParameters.ConnectionTag);
             }
             postboxMsg.Status = DeliveryStatus.POSTED;
-            postboxMsg.Id = new Guid().ToString();
+            postboxMsg.Id = Guid.NewGuid().ToString();
             return Task.FromResult(postboxMsg);
         }
 

@@ -4,7 +4,7 @@ using PostBox.Outbound.Ingestion.Interface;
 using PostBox.Outbound.Ingestion.Interface.Ingestors;
 using PostBox.Outbound.Relayer.Interface;
 using PostBox.Outbound.Relayer.Interface.Models;
-using PostBox.Outbound.Relayer.Interface.Relayers;
+using PostBox.Outbound.Relayer.Interface.Relayers.RabbitMq;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +19,7 @@ builder.Services.AddScoped(typeof(IPostboxOutboundIngestor<>), typeof(RabbitMqIn
 builder.Services.AddSingleton<IPostboxMessageRepository, PostboxInMemoryRepositroy>();
 builder.Services.Configure<PostboxOutboundRelayerConfig>(builder.Configuration.GetSection("RelayerSettings")); 
 builder.Services.AddSingleton<IPostboxOutboundRelayer, RabbitMqOutboundRelayer>();
-PostBox.Outbound.Relayer.Interface.Relayers.RegistrationHooks.Register(builder.Services);
+PostBox.Outbound.Relayer.Interface.Relayers.RabbitMq.RegistrationHooks.Register(builder.Services);
 
 var app = builder.Build();
 

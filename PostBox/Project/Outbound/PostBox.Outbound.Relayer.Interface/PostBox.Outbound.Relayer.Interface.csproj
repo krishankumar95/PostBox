@@ -9,10 +9,14 @@
   <ItemGroup>
     <None Remove="Models\" />
     <None Remove="Relayers\" />
+    <None Remove="Models\RabbitMq\" />
+    <None Remove="Relayers\RabbitMq\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
     <Folder Include="Relayers\" />
+    <Folder Include="Models\RabbitMq\" />
+    <Folder Include="Relayers\RabbitMq\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Common\PostBox.Common.DataAccess\PostBox.Common.DataAccess.csproj" />
